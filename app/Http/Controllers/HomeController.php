@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('dashboard');
     }
     public function getlogout(){
       Auth::logout();
@@ -83,12 +83,13 @@ class HomeController extends Controller
            'id_departamento' => $id_departamento,
            'file' => $file]
       ]);
-      return redirect()->route('dashboard')->with(['message'=>'O campo foi Inserido com sucesso!']);;
+      return redirect()->route('dashboard')->with(['message'=>'O documento foi Inserido com sucesso!']);;
     }
-    public function getDeleteDoc($doc_id){
-      DB::table('documents')->where('id', '=', $doc_id)->delete();
+    public function postDeleteDoc(Request $request){
+      $id_doc_apagar=$request["apaga_doc"];
+      DB::table('documents')->where('id', '=',$id_doc_apagar)->delete();
 
-      return redirect()->route('dashboard')->with(['message'=>'O campo foi apagada com sucesso!']);
+      return redirect()->route('dashboard')->with(['message'=>' O documento foi Apagado com sucesso!']);
     }
     public function postEditDoc(Request $request){
       //Validation
@@ -122,7 +123,7 @@ class HomeController extends Controller
              'id_tipo_doc' => $id_tipo_doc ,
              'id_departamento' => $id_departamento,
              'file' => $file]);
-      return redirect()->route('dashboard')->with(['message'=>'O campo foi editada com sucesso!']);
+      return redirect()->route('dashboard')->with(['message'=>'O documento foi Alterado com sucesso!']);
     }
 
 }

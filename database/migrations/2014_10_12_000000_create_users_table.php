@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->integer('id_department');
+            $table->integer('ativo');
             $table->rememberToken();
             $table->timestamps();
         });
