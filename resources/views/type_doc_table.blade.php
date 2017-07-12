@@ -87,7 +87,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Editar Departamento</h4>
+        <h4 class="modal-title">Editar Tipo Documento</h4>
       </div>
       <form class="form-group" action="{{route('admin.type_doc.edit')}}" method="post">
       <div class="modal-body">
@@ -103,7 +103,7 @@
         <div class="modal-footer">
           <input type="text" id="id_type_doc" name="id_type_doc" style="display: none" >
           <input type="text" name="_token"  value="{{ csrf_token() }}" style="display: none" >
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
           <button type="submit" class="btn btn-primary">Guardar Mudanças</button>
         </div>
       </form>
@@ -130,7 +130,7 @@
             </div>
       </div>
       <div class="modal-footer">
-
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -146,11 +146,16 @@
           <h4 class="modal-title">Apagar Tipo de Doc</h4>
         </div>
         <div class="modal-body">
-          <p>Tem a certesa que quer apagar este Tipo Doc???</p>
+          <h4>Tem a certesa que quer apagar este Tipo Doc???</h4>
+          <ul>
+            <li>
+              Todos os documentos que fazem parte deste Tipo Doc irão ser apagado.
+            </li>
+          </ul>
           <input  id="apagar_type_doc" name="apagar_type_doc"  style="display: none">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
           <input type="hidden" name="_token"  value="{{ csrf_token() }}" >
           <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Apagar</button>
         </div>

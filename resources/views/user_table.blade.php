@@ -7,7 +7,7 @@
   <div class="col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4 class='box-title'><i class='fa fa-book'></i><b> Lista de Documentos </b></h4>
+        <h4 class='box-title'><i class='fa fa-book'></i><b> Lista de Utilizador </b></h4>
       </div>
       <div class="panel-body">
         <div class='row-fluid'>
@@ -73,7 +73,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><i class='fa fa-arrow-circle-o-right'></i><b> Inserir User </b></h4>
+        <h4 class="modal-title"><i class='fa fa-arrow-circle-o-right'></i><b> Inserir Utilizador </b></h4>
       </div>
       <form class="form-group" action="{{route('admin_inser')}}" method="post">
         <div class="modal-body">
@@ -130,7 +130,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><i class='fa fa-book'></i><b> Editar User </b></h4>
+        <h4 class="modal-title"><i class='fa fa-book'></i><b> Editar Utilizador </b></h4>
       </div>
       <form class="form-group" action="{{route('admin_edit')}}" method="post">
         <div class="modal-body">
@@ -198,7 +198,7 @@
         <div class="modal-body">
             <div class="form-group">
               <div class='form-group has-feedback'>
-                <label>Utilizador:</label><br>
+                <label>Ver Utilizador:</label><br>
                 <input type='text' class='form-control'  required='required'id='nome' name='nome' placeholder='Utilizador: 'required='required' disabled>
                 <span class='glyphicon glyphicon-comment form-control-feedback' ></span>
               </div>
@@ -238,7 +238,6 @@
         <div class="modal-footer">
           <input type="hidden" name="id" id="_user" value="" >
           <input type="hidden" name="_token"  value="{{ csrf_token() }}" >
-          <button type="submit"class="btn btn-primary" ><i class="fa fa-check" aria-hidden="true"></i> Confirmar</button>
           <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
         </div>
       </form>
@@ -253,14 +252,19 @@
       <form action="{{route('apagar_user')}}" method="POST">
         <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Apagar User</h4>
+          <h4 class="modal-title">Apagar Utilizador</h4>
         </div>
         <div class="modal-body">
-          <p>Tem a certesa que quer apagar este Utilizador???</p>
+          <h4>Tem a certesa que quer apagar este Utilizador??? </h4><br>
+          <ul>
+            <li>
+              Todos os documentos criados por este utilizador irão ser apagados.
+            </li>
+          </ul>
           <input  id="apagar_user" name="apaga_user"  style="display: none">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
           <input type="hidden" name="_token"  value="{{ csrf_token() }}" >
           <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Apagar</button>
         </div>
@@ -295,7 +299,7 @@
         if(ativo==1){
             var1="Ativo";
             console.log('ativo');
-        }else if(ativo==2){
+        }else if(ativo==0){
              var1="Desativo";
             console.log('desativo');
         }
@@ -339,7 +343,7 @@
          if(ativo==1){
              var1="Ativo";
              console.log('ativo');
-         }else if(ativo==2){
+         }else if(ativo==0){
               var1="Desativo";
              console.log('desativo');
          }

@@ -22,6 +22,14 @@ class AdminController extends Controller
        *
        * @return \Illuminate\Http\Response
        */
+       public function getlogout_admin(){
+         Auth::logout();
+         return redirect()->route('login');
+       }
+       //public function postAdmin_Logout(Request $request){
+
+
+       //}
       public function index(){
         return view('admin');
       }
@@ -104,7 +112,7 @@ class AdminController extends Controller
         $id_users_ap=$request["apaga_user"];
         DB::table('users')->where('id', '=',$id_users_ap)->delete();
 
-        return redirect()->route('user_table')->with(['message'=>' O User foi Apagado com sucesso!']);
+        return redirect()->route('user_table')->with(['message'=>'O Utilizador foi Apagado com sucesso!']);
       }
       public function postApagar_depart(Request $request){
         $id_department_ap=$request["apaga_depart"];
@@ -163,7 +171,7 @@ class AdminController extends Controller
             if($ativo_edi=="Ativo"){
               $ativo_edi=1;
             }else{
-              $ativo_edi=2;
+              $ativo_edi=0;
             }
               if($password_edi!=null){
                   $password_edi=bcrypt($password_edi);

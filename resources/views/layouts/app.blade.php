@@ -50,6 +50,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+                        @if(Auth::guard('admin')->check())
+                          <li><a href="{{ route('admin_menu') }}">Admin Menu</a></li>
+                        @endif
                         @if(Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             @else

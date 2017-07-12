@@ -298,6 +298,7 @@
         </div>
       </form>
       <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
       </div>
     </div>
   </div>

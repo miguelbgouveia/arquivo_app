@@ -42,7 +42,7 @@
           </div>
           <div class=''>
             <a href='#' data-toggle="modal" data-target="#myModal"  class='btn btn-success date_doc'>
-              <i class='fa fa-plus'></i> Novo Utilizador
+              <i class='fa fa-plus'></i> Novo Departamento
             </a>
           </div>
         </div
@@ -64,7 +64,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title"><i class='fa fa-arrow-circle-o-right'></i><b> Inserir Departamento </b></h4>
       </div>
-      <form class="form-group" action="{{route('admin.depart.insert')}}" method="post">
+      <form class="form-group" id="depart_form_inser" action="{{route('admin.depart.insert')}}" method="post">
         <div class="modal-body">
             <div class="form-group">
               <div class='form-group has-feedback'>
@@ -81,7 +81,7 @@
         <div class="modal-footer">
           <input type="hidden" name="id" id="_user" value="" >
           <input type="hidden" name="_token"  value="{{ csrf_token() }}" >
-          <button type="submit"class="btn btn-primary" ><i class="fa fa-check" aria-hidden="true"></i> Confirmar</button>
+          <button type="submit" onclick="depart_inser_submit(this)" class="btn btn-primary" onclick="depart_inser_submit(this)" ><i class="fa fa-check" aria-hidden="true"></i> Confirmar</button>
           <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
         </div>
       </form>
@@ -97,7 +97,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Editar Departamento</h4>
       </div>
-      <form class="form-group" action="{{route('admin.depart.edit')}}" method="post">
+      <form class="form-group" id="edi_form_depart" action="{{route('admin.depart.edit')}}" method="post">
       <div class="modal-body">
         <div class="modal-body">
             <div class="form-group">
@@ -116,8 +116,8 @@
         <div class="modal-footer">
           <input type="text" id="id_depart" name="id_depart" style="display: none" >
           <input type="text" name="_token"  value="{{ csrf_token() }}" style="display: none" >
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Guardar Mudanças</button>
+          <button type="submit" onclick="depart_edi_submit(this)"  class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>  Guardar Mudanças</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
         </div>
       </form>
       </div><!-- /.modal-content -->
@@ -148,7 +148,7 @@
             </div>
       </div>
       <div class="modal-footer">
-
+          <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -164,7 +164,12 @@
           <h4 class="modal-title">Apagar Departamento</h4>
         </div>
         <div class="modal-body">
-          <p>Tem a certesa que quer apagar este Departamento???</p>
+          <h4>Tem a certesa que quer apagar este Departamento???</h4>
+          <ul>
+            <li>
+              Todos os documentos e utilizadores que fazem parte deste Departamento irão ser apagado.
+            </li>
+          </ul>
           <input  id="apagar_depart" name="apaga_depart"  style="display: none">
         </div>
         <div class="modal-footer">
@@ -206,6 +211,34 @@
          document.getElementById('edi_abrevia_depart').value=abreviation;
          document.getElementById('id_depart').value=elem.name;
    }
+   function depart_edi_submit(elem) {
+      abreviation=document.getElementById('edi_abrevia_depart').value;
+      if(document.getElementById('edi_nome_depart').value==null){
+        alert("validation failed false");
+        returnToPreviousPage();
+        return false;
+      }
+      if(document.getElementById('edi_abrevia_depart').value==null){
+        alert("validation failed false");
+        returnToPreviousPage();
+        return false;
+      }
+      return true;
+      document.getElementById("edi_form_depart").submit();
+    }
+
+    function depart_inser_submit(elem) {
+       if(document.getElementById('nome_depart').value==null){
+         returnToPreviousPage();
+         return false;
+       }
+       if(document.getElementById('abrevia_depart').value==null){
+         returnToPreviousPage();
+         return false;
+       }
+       return true;
+       document.getElementById("depart_form_inser").submit();
+     }
 
 </script>
 @stop

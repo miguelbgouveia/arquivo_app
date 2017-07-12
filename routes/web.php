@@ -18,6 +18,7 @@ Route::prefix('admin')->group(function(){
   Route::get('/', 'AdminController@index');
 });
 Route::get('/admin_menu', 'AdminController@getAdminMenu')->name('admin_menu');
+Route::get('/data_base_inser', 'DataBaseController@getData_Base_Inser')->name('data.base.inser');
 Auth::routes();
 Route::post('/admin_inser', [
   'uses' => 'AdminController@postUser_Inser', 'as'=>'admin_inser'
@@ -28,6 +29,7 @@ Route::post('/admin_depart_insert', [
 Route::post('/admin_depart_edit', [
   'uses' => 'AdminController@postAdmin_Depart_Edit', 'as'=>'admin.depart.edit'
 ]);
+Route::get('/admin_logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 Route::post('/apagar_user', [
   'uses' => 'AdminController@postApagar_User', 'as'=>'apagar_user'
 ]);
