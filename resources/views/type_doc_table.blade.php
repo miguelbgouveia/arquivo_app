@@ -61,20 +61,20 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title"><i class='fa fa-arrow-circle-o-right'></i><b> Inserir Tipo de Doc</b></h4>
       </div>
-      <form class="form-group" action="{{route('admin.type_doc.insert')}}" method="post">
+      <form class="form-group" id="type_form_inser" action="{{route('admin.type_doc.insert')}}" method="post">
         <div class="modal-body">
             <div class="form-group">
               <div class='form-group has-feedback'>
                 <label>Nome do Tipo de Doc: </label><br>
-                <input type='text' class='form-control'  required='required' name='type_doc_inser' placeholder='Nome do Tipo de Doc: 'required='required'>
+                <input type='text' class='form-control'  required='required' name='type_doc_inser' id='type_doc_inser' placeholder='Nome do Tipo de Doc: 'required='required'>
                 <span class='glyphicon glyphicon-comment form-control-feedback' ></span>
               </div>
             </div>
         <div class="modal-footer">
           <input type="hidden" name="id" id="_user" value="" >
           <input type="hidden" name="_token"  value="{{ csrf_token() }}" >
-          <button type="submit"class="btn btn-primary" ><i class="fa fa-check" aria-hidden="true"></i> Confirmar</button>
-          <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
+          <a type="button"class="btn btn-primary" id="btn_type_inser" onclick="type_inser_submit(this)" ><i class="fa fa-check" aria-hidden="true"></i> Confirmar</a>
+          <button type="button" class="btn btn-warning" data-dismiss="modal" ><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
         </div>
       </form>
     </div>
@@ -89,7 +89,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Editar Tipo Documento</h4>
       </div>
-      <form class="form-group" action="{{route('admin.type_doc.edit')}}" method="post">
+      <form class="form-group" id="type_form_edi" action="{{route('admin.type_doc.edit')}}" method="post">
       <div class="modal-body">
         <div class="modal-body">
             <div class="form-group">
@@ -103,8 +103,8 @@
         <div class="modal-footer">
           <input type="text" id="id_type_doc" name="id_type_doc" style="display: none" >
           <input type="text" name="_token"  value="{{ csrf_token() }}" style="display: none" >
-          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-          <button type="submit" class="btn btn-primary">Guardar Mudanças</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+          <button type="submit" id="btn_type_edit" data-dismiss="modal" class="btn btn-primary">Guardar Mudanças</button>
         </div>
       </form>
       </div><!-- /.modal-content -->
@@ -187,6 +187,30 @@
          document.getElementById('type_doc_edit').value=name;
          document.getElementById('id_type_doc').value=elem.name;
    }
+
+   function type_edi_submit(elem) {
+      if(document.getElementById('type_doc_edit').value==null){
+        alert("validation failed false");
+        returnToPreviousPage();
+        return false;
+      }
+      return true;
+      document.getElementById("type_form_edi").submit();
+      document.getElementById("btn_type_edit").disabled = true;
+    }
+
+    function type_inser_submit(elem) {
+      console.log("Pedro");
+      if(document.getElementById('type_doc_inser').value==null){
+        returnToPreviousPage();
+        return false;
+        console.log("Falhou");
+      }
+      return true;
+      document.getElementById("type_form_inser").submit();
+      document.getElementById("btn_type_inser").style.display = 'none';
+        console.log("Flag1");
+     }
 
 </script>
 @stop
